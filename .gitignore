@@ -10,3 +10,11 @@ src/-lstdc++.res
 # Neural network for the NNUE evaluation
 **/*.nnue
 
+# stockfish-web stuff
+stockfishWeb.js
+stockfishWeb.wasm
+stockfishWeb.worker.js
+.vscode/
+.metals/
+.DS_Store
+*.code-workspace

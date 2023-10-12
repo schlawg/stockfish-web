@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
   std::cout << engine_info() << std::endl;
 
-  CommandLine::init(argc, argv);
+  //CommandLine::init(argc, argv); // getcwd crashes in browser
   UCI::init(Options);
   Tune::init();
   PSQT::init();

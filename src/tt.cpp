@@ -85,6 +85,10 @@ void TranspositionTable::resize(size_t mbSize) {
 
 void TranspositionTable::clear() {
 
+  std::memset(table, 0, clusterCount * sizeof(Cluster));
+  // no new threads for wasm, otherwise terrible things.
+  return;
+
   std::vector<std::thread> threads;
 
   for (size_t idx = 0; idx < size_t(Options["Threads"]); ++idx)

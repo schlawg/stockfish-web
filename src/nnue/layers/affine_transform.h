@@ -277,6 +277,16 @@ namespace Stockfish::Eval::NNUE::Layers {
     const OutputType* propagate(
         const InputType* input, OutputType* output) const {
 
+      constexpr int n = InputDimensions;
+      constexpr int m = OutputDimensions;
+      constexpr int n_stride = PaddedInputDimensions;
+      auto A = *reinterpret_cast<const int8_t(*)[m][n_stride]>(weights);
+      auto x = *reinterpret_cast<const uint8_t(*)[n]>(input);
+      auto b = *reinterpret_cast<const int32_t(*)[m]>(biases);
+      auto y = *reinterpret_cast<int32_t(*)[m]>(output);
+      emscripten_wasm_simd::affine<n, m, n_stride>(A, x, b, y);
+      return y;
+
 #if defined (USE_AVX512)
       using acc_vec_t = __m512i;
       using bias_vec_t = __m128i;

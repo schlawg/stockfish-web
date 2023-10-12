@@ -1854,7 +1854,7 @@ void MainThread::check_time() {
 string UCI::pv(const Position& pos, Depth depth) {
 
   std::stringstream ss;
-  TimePoint elapsed = Time.elapsed() + 1;
+  TimePoint elapsed = std::max(Time.elapsed() + 1, TimePoint(1));
   const RootMoves& rootMoves = pos.this_thread()->rootMoves;
   size_t pvIdx = pos.this_thread()->pvIdx;
   size_t multiPV = std::min((size_t)Options["MultiPV"], rootMoves.size());
@@ -1941,6 +1941,9 @@ bool RootMove::extract_ponder_from_tt(Position& pos) {
 void Tablebases::rank_root_moves(Position& pos, Search::RootMoves& rootMoves) {
 
     RootInTB = false;
+    Cardinality = 0;
+    return;
+
     UseRule50 = bool(Options["Syzygy50MoveRule"]);
     ProbeDepth = int(Options["SyzygyProbeDepth"]);
     Cardinality = int(Options["SyzygyProbeLimit"]);

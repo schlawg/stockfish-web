@@ -19,6 +19,8 @@
 #ifndef STOCKFISH_SIMD_H_INCLUDED
 #define STOCKFISH_SIMD_H_INCLUDED
 
+#include "wasm_simd.h"
+
 #if defined(USE_AVX2)
 # include <immintrin.h>
 

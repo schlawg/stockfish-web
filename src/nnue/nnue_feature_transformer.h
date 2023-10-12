@@ -40,10 +40,8 @@ namespace Stockfish::Eval::NNUE {
   using WeightType     = std::int16_t;
   using PSQTWeightType = std::int32_t;
 
-  // If vector instructions are enabled, we update and refresh the
-  // accumulator tile by tile such that each tile fits in the CPU's
-  // vector registers.
-  #define VECTOR
+  // For WASM, let clang auto-vectorize
+  // #define VECTOR
 
   static_assert(PSQTBuckets % 8 == 0,
     "Per feature PSQT values cannot be processed at granularity lower than 8 at a time.");

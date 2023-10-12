@@ -1,0 +1,22 @@
+{
+  "name": "stockfish-web",
+  "version": "0.1.0",
+  "author": "T-bone Duplexus",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "main": "stockfishWeb.js",
+  "scripts": {
+    "build": "make -j$(getconf _NPROCESSORS_ONLN)",
+    "node": "make -j$(getconf _NPROCESSORS_ONLN) node",
+    "debug": "make -j$(getconf _NPROCESSORS_ONLN) OPT='-O0 -DDEBUG -sASSERTIONS=2 -g3 -sSAFE_HEAP'",
+    "clean": "make clean",
+    "nnue": "scripts/get_nnue.sh --fetch",
+    "test": "node tests/wasm-cli.js $(scripts/get_nnue.sh)"
+  },
+  "files": [
+    "stockfishWeb.d.ts",
+    "stockfishWeb.js",
+    "stockfishWeb.wasm",
+    "stockfishWeb.worker.js"
+  ]
+}

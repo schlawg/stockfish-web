@@ -41,6 +41,8 @@
 #include "search.h"
 #include "thread.h"
 
+std::string js_getline(); // wasm/glue.cpp
+
 namespace Stockfish {
 
 namespace {
@@ -251,9 +253,7 @@ void UCI::loop(int argc, char* argv[]) {
       cmd += std::string(argv[i]) + " ";
 
   do {
-      if (argc == 1 && !getline(std::cin, cmd)) // Wait for an input or an end-of-file (EOF) indication
-          cmd = "quit";
-
+      cmd = js_getline();
       std::istringstream is(cmd);
 
       token.clear(); // Avoid a stale if getline() returns nothing or a blank line
@@ -306,7 +306,7 @@ void UCI::loop(int argc, char* argv[]) {
       else if (!token.empty() && token[0] != '#')
           sync_cout << "Unknown command: '" << cmd << "'. Type help for more information." << sync_endl;
 
-  } while (token != "quit" && argc == 1); // The command-line arguments are one-shot
+  } while (token != "quit");
 }
 
 

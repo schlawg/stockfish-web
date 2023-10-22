@@ -10,8 +10,9 @@ CXX_FLAGS = $(OPT) -Isrc -Isrc/wasm -pthread -msse -msse2 -mssse3 -msse4.1 -msim
 LD_FLAGS = $(CXX_FLAGS)  --pre-js=src/wasm/initModule.js -sEXPORT_ES6 -sEXPORT_NAME=StockfishWeb \
 	-sEXPORTED_FUNCTIONS='[_malloc]' -sEXPORTED_RUNTIME_METHODS='[stringToUTF8,UTF8ToString]' \
 	-sINCOMING_MODULE_JS_API='[locateFile,print,printErr,wasmMemory,buffer,instantiateWasm]' \
-	-sINITIAL_MEMORY=64MB -sALLOW_MEMORY_GROWTH -sSTACK_SIZE=1MB -sWASM_BIGINT -sFILESYSTEM=0 \
-	-sPROXY_TO_PTHREAD -sALLOW_BLOCKING_ON_MAIN_THREAD=0 -sSTRICT -sMODULARIZE
+	-sINITIAL_MEMORY=64MB -sALLOW_MEMORY_GROWTH -sSTACK_SIZE=2MB -sWASM_BIGINT -sFILESYSTEM=0 \
+	-sALLOW_BLOCKING_ON_MAIN_THREAD=0 -sPTHREAD_POOL_SIZE=navigator.hardwareConcurrency \
+	-sPROXY_TO_PTHREAD -sSTRICT -sMODULARIZE 
 
 SOURCES = bitbase.cpp bitboard.cpp benchmark.cpp endgame.cpp evaluate.cpp main.cpp material.cpp \
 	misc.cpp movegen.cpp movepick.cpp pawns.cpp position.cpp psqt.cpp search.cpp thread.cpp \

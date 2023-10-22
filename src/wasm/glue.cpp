@@ -44,7 +44,7 @@ EMSCRIPTEN_KEEPALIVE std::string js_getline() {
   else if (cmd.type == cmd.NNUE) {
     std::istream in(&cmd);
     bool success = Stockfish::Eval::NNUE::load_eval("", in);
-    if (!success) std::cerr << "BAD NNUE" << std::endl;
+    if (!success) std::cerr << "BAD_NNUE" << std::endl;
     return "setoption name Use NNUE value " + std::string(success ? "true" : "false");
   }
   return "quit";

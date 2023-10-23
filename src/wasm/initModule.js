@@ -1,19 +1,8 @@
 const listeners = [];
 
-Module['addMessageListener'] = listener => listeners.push(listener);
+if (!Module['listen']) Module['listen'] = data => console.log(data); // attach listener here
 
-Module['print'] = function (data) {
-  if (listeners.length === 0) console.log(data);
-  else
-    setTimeout(function () {
-      for (const listener of listeners) listener(data);
-    }, 0);
-};
-
-Module['printErr'] = function (data) {
-  if (Module['errorHandler']) Module['errorHandler'](data);
-  else console.error(data);
-};
+if (!Module['onError']) Module['onError'] = data => console.error(data); // attach handler here
 
 Module['postMessage'] = function (uci) {
   const sz = lengthBytesUTF8(uci) + 1;
@@ -32,3 +21,7 @@ Module['setNnueBuffer'] = function (buf /** Uint8Array */) {
   Module['HEAPU8'].set(buf, heapBuf);
   _setNnueBuffer(heapBuf, buf.byteLength);
 };
+
+Module['print'] = data => Module['listen']?.(data);
+
+Module['printErr'] = data => Module['onError']?.(data);

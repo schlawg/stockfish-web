@@ -40,7 +40,6 @@ namespace Stockfish::Eval::NNUE {
   using WeightType     = std::int16_t;
   using PSQTWeightType = std::int32_t;
 
-  // For WASM, let clang auto-vectorize
   // #define VECTOR
 
   static_assert(PSQTBuckets % 8 == 0,

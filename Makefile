@@ -21,16 +21,16 @@ OBJS = $(addprefix src/, $(SOURCES:.cpp=.o))
 
 .PHONY: build node clean
 
-build: ENVIRONMENT = web,worker
+build: TARGET_FLAGS = -sENVIRONMENT=web,worker -sPTHREAD_POOL_SIZE=navigator.hardwareConcurrency
 build: $(EXE)
 
-node: ENVIRONMENT = node
+node: TARGET_FLAGS = -sENVIRONMENT=node
 node: $(EXE)
 	@cat src/wasm/createRequire.js $(EXE).worker.js > $(EXE).worker.js.tmp
 	@mv $(EXE).worker.js.tmp $(EXE).worker.js
 
 $(EXE): $(OBJS)
-	$(CXX) -o $@.js $(OBJS) $(LD_FLAGS) -sENVIRONMENT=$(ENVIRONMENT)
+	$(CXX) -o $@.js $(OBJS) $(LD_FLAGS) $(TARGET_FLAGS)
 
 %.o: %.cpp
 	$(CXX) $(CXX_FLAGS) -c $< -o $@

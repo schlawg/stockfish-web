@@ -18,6 +18,6 @@ readline
   })
   .on('line', line => {
     // To load a NNUE file from within the shell, use "nnue <filename>" (not setoption).
-    if (line.startsWith('nnue ')) sf.nnue(fs.readFileSync(line.slice(5)));
+    if (line.startsWith('nnue ')) sf.setNnueBuffer(fs.readFileSync(line.slice(5)));
     else sf.postMessage(line);
   });

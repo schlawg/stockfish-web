@@ -1,10 +1,10 @@
 declare module 'stockfish-web' {
   interface StockfishWeb {
     postMessage(uci: string): void;
-    addMessageListener: (data: string) => void;
+    listen: (data: string) => void; // attach listener here
     setNnueBuffer(data: Uint8Array): void;
-    getRecommendedNnue(): string;
-    errorHandler: (msg: string) => void;
+    getRecommendedNnue(): string; // returns a bare filename
+    onError: (msg: string) => void; // attach error handler here
   }
   export default StockfishWeb;
 }

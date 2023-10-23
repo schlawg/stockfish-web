@@ -1,6 +1,7 @@
 #include <emscripten.h>
 #include <queue>
 #include "syzygy/tbprobe.h"
+#include "evaluate.h"
 #include "nnue/evaluate_nnue.h"
 
 struct Command : public std::streambuf {
@@ -43,9 +44,8 @@ EMSCRIPTEN_KEEPALIVE std::string js_getline() {
   if (cmd.type == cmd.UCI) return cmd.uci;
   else if (cmd.type == cmd.NNUE) {
     std::istream in(&cmd);
-    bool success = Stockfish::Eval::NNUE::load_eval("", in);
-    if (!success) std::cerr << "BAD_NNUE" << std::endl;
-    return "setoption name Use NNUE value " + std::string(success ? "true" : "false");
+    if (!Stockfish::Eval::NNUE::load_eval("", in)) std::cerr << "BAD_NNUE" << std::endl;
+    return js_getline();
   }
   return "quit";
 }

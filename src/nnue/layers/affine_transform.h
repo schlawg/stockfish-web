@@ -190,18 +190,6 @@ class AffineTransform {
     // Forward propagation
     void propagate(const InputType* input, OutputType* output) const {
 
-      /* this does not help any more, at all. investigate and fix
-      
-      constexpr int n = InputDimensions;
-      constexpr int m = OutputDimensions;
-      constexpr int n_stride = PaddedInputDimensions;
-      auto A = *reinterpret_cast<const int8_t(*)[m][n_stride]>(weights);
-      auto x = *reinterpret_cast<const uint8_t(*)[n]>(input);
-      auto b = *reinterpret_cast<const int32_t(*)[m]>(biases);
-      auto y = *reinterpret_cast<int32_t(*)[m]>(output);
-      emscripten_wasm_simd::affine<n, m, n_stride>(A, x, b, y);
-      return;
-      */
 #if defined (USE_SSSE3)
 
         if constexpr (OutputDimensions > 1)

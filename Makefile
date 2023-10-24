@@ -17,7 +17,7 @@ LD_FLAGS = $(CXX_FLAGS)  --pre-js=src/wasm/initModule.js -sEXPORT_ES6 -sEXPORT_N
 SOURCES = bitbase.cpp bitboard.cpp benchmark.cpp endgame.cpp evaluate.cpp main.cpp material.cpp \
 	misc.cpp movegen.cpp movepick.cpp pawns.cpp position.cpp psqt.cpp search.cpp thread.cpp \
 	timeman.cpp tt.cpp tune.cpp uci.cpp ucioption.cpp nnue/evaluate_nnue.cpp \
-	nnue/features/half_ka_v2_hm.cpp wasm/glue.cpp wasm/wasm_simd.cpp
+	nnue/features/half_ka_v2_hm.cpp wasm/glue.cpp #wasm/wasm_simd.cpp
 
 OBJS = $(addprefix src/, $(SOURCES:.cpp=.o))
 

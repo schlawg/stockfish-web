@@ -22,6 +22,6 @@ Module['setNnueBuffer'] = function (buf /** Uint8Array */) {
   _setNnueBuffer(heapBuf, buf.byteLength);
 };
 
-Module['print'] = data => Module['listen']?.(data);
+Module['print'] = data => Module['listen']?.(data); // setTimeout not needed here
 
 Module['printErr'] = data => Module['onError']?.(data);

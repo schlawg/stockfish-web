@@ -43,6 +43,8 @@
 
 std::string js_getline(); // wasm/glue.cpp
 
+std::string js_getline(); // wasm/glue.cpp
+
 namespace Stockfish {
 
 namespace {

@@ -44,7 +44,7 @@ EMSCRIPTEN_KEEPALIVE std::string js_getline() {
   if (cmd.type == cmd.UCI) return cmd.uci;
   else if (cmd.type == cmd.NNUE) {
     std::istream in(&cmd);
-    if (!Stockfish::Eval::NNUE::load_eval("", in)) std::cerr << "BAD NNUE" << std::endl;
+    if (!Stockfish::Eval::NNUE::load_eval("", in)) std::cerr << "BAD_NNUE" << std::endl;
     return js_getline();
   }
   return "quit";

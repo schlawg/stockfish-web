@@ -1,6 +1,6 @@
 {
   "name": "stockfish-web",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "author": "T-bone Duplexus",
   "license": "AGPL-3.0-or-later",
   "type": "module",
@@ -17,6 +17,7 @@
     "stockfishWeb.d.ts",
     "stockfishWeb.js",
     "stockfishWeb.wasm",
+    "stockfishWeb.7.wasm",
     "stockfishWeb.worker.js"
   ]
 }

@@ -12,7 +12,7 @@ src/-lstdc++.res
 
 # stockfish-web stuff
 stockfishWeb.js
-stockfishWeb.wasm
+stockfishWeb*.wasm
 stockfishWeb.worker.js
 .vscode/
 .metals/

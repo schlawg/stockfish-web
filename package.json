@@ -10,8 +10,9 @@
     "node": "make -j$(getconf _NPROCESSORS_ONLN) node",
     "debug": "make -j$(getconf _NPROCESSORS_ONLN) OPT='-O0 -DDEBUG -sASSERTIONS=2 -g3 -sSAFE_HEAP'",
     "clean": "make clean",
-    "nnue": "scripts/get_nnue.sh --fetch",
-    "test": "node tests/wasm-cli.js $(scripts/get_nnue.sh)"
+    "fetch": "scripts/get-nnue.sh --fetch",
+    "test": "node tests/wasm-cli.js $(scripts/get-nnue.sh)",
+    "prepub": "scripts/pre-publish.sh"
   },
   "files": [
     "stockfishWeb.d.ts",
